@@ -31,9 +31,7 @@ double GetTemLib::GetLongDistance(double lon1, double lat1, double lon2, double 
 
 	double distance;
 
-<<<<<<< HEAD
 
-=======
 	// ½Ç¶È×ª»»Îª»¡¶È
 
 	ew1 = lon1 * DEF_PI180;
@@ -67,10 +65,6 @@ double GetTemLib::GetLongDistance(double lon1, double lat1, double lon2, double 
 
 
 
-
-
-
->>>>>>> bddcc0a... ä¿®æ”¹ç›¸åº”çš„å½¢å¼
 // »ñÈ¡ÀúÊ·ÎÂ¶ÈÇúÏß
 bool GetTemLib::getHistoryTemVec(float p[24], int Month, int Day, int LOCATION)
 {
@@ -164,6 +158,9 @@ bool GetTemLib::getHistoryTemVec(float p[24], int Month, int Day, int LOCATION)
 
 }
 
+
+
+
 // »ñÈ¡ÆøÎÂ¹À¼ÆÖµ
 bool GetTemLib::getEstTemp(float & tem,int hour, int minute, float TempMax, float TempMin, int TimeMax, int TimeMin)
 {
@@ -200,10 +197,6 @@ void GetTemLib::setLibPath(string libPath)
 	m_libPath = libPath;
 	return;
 }
-
-
-
-
 
 
 /*¡­¡­¡­¡­¡­¡­¡­¡­ReadCsvTem ¶ÁÈ¡csvÊı¾İ*/
@@ -624,3 +617,4 @@ int Month_day_JD[365][3] = {
 	12	,	31	,	365
 
 };
+

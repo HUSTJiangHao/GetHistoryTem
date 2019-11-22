@@ -9,12 +9,10 @@ int main()
 
 	gettem.setLibPath("D:/_CODE/GetHistoryTem/TemHistoryLib/TemHistoryLib/temData");
 
-<<<<<<< HEAD
-	
-=======
+
 	float tem;
-	//gettem.getEstTemp(tem, 4, 0, 30, 20,20,6);
-	//cout << tem << endl;
+	gettem.getEstTemp(tem, 4, 0, 30, 20,20,6);
+	cout << tem << endl;
 	
 	float p[24];
 	gettem.getHistoryTemVec(p, 6, 21, HK_CHANGSHA);
@@ -27,7 +25,7 @@ int main()
 
 
 
->>>>>>> bddcc0a... 修改相应的形式
+
 	system("pause");
 	return 0;
 }
