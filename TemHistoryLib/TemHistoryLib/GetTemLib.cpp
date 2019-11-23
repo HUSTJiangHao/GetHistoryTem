@@ -73,7 +73,7 @@ bool GetTemLib::getHistoryTemVec(float p[24], int Month, int Day, int LOCATION)
 
 	int JD; //积日
 
-	/*求积日*/
+	/*求积日并查询，如果没有则返回false*/
 	
 	for (int i = 0; ; i++)
 	{
@@ -196,6 +196,103 @@ void GetTemLib::setLibPath(string libPath)
 {
 	m_libPath = libPath;
 	return;
+}
+
+
+
+// 根据经纬度查询相近地点的数据
+bool GetTemLib::getHistoryTemp(float & tem, int month, int day, int hour, int minute, float Lon, float Lat)
+{
+
+	if (hour < 0 || hour>23)
+		return false;
+	if (minute < 0 || minute>59)
+		return false;
+
+
+	float DistanceVec[10];
+	float distance;
+
+	// 1 哈尔滨 126.53 42.8
+	distance = GetLongDistance(Lon, Lat, 126.53, 42.8);
+	DistanceVec[0] = distance;
+
+	// 2 沈阳  123.43 41.8
+	distance = GetLongDistance(Lon, Lat, 123.43, 41.8);
+	DistanceVec[1] = distance;
+
+	// 3 北京  116.40 39.90
+	distance = GetLongDistance(Lon, Lat, 116.40, 39.90);
+	DistanceVec[2] = distance;
+
+	// 4 济南 119.98 36.67
+	distance = GetLongDistance(Lon, Lat, 119.98, 36.67);
+	DistanceVec[3] = distance;
+
+	// 5 合肥 117.25 31.83
+	distance = GetLongDistance(Lon, Lat, 117.25, 31.83);
+	DistanceVec[4] = distance;
+
+	// 6 长沙 112.93 28.23
+	distance = GetLongDistance(Lon, Lat, 112.93, 28.23);
+	DistanceVec[5] = distance;
+
+	// 7 广州 113.27 21.13 
+	distance = GetLongDistance(Lon, Lat, 113.27, 21.13);
+	DistanceVec[6] = distance;
+
+	// 8 海口 110.32 20.03 
+	distance = GetLongDistance(Lon, Lat, 110.32, 20.03);
+	DistanceVec[7] = distance;
+
+	// 9 都兰 98.13 36.30
+	distance = GetLongDistance(Lon, Lat, 98.13, 36.30);
+	DistanceVec[8] = distance;
+
+	// 10 乌鲁木齐 87.62 43.82
+	distance = GetLongDistance(Lon, Lat, 87.62, 43.82);
+	DistanceVec[9] = distance;
+
+
+	int Location = 0;
+	float distan = DistanceVec[0];
+
+	for (int i = 0; i < 10; i++)
+	{
+		if (DistanceVec[i] < distan)
+		{
+			distan = DistanceVec[i];
+			Location = i + 1;
+		}
+	}
+
+
+
+	float HistoryTempVec[24];
+
+	if (!getHistoryTemVec(HistoryTempVec, month, day, Location))
+		return false;
+
+
+	if (hour < 23)
+	{
+		float leftValue = HistoryTempVec[hour];
+		float rightValue = HistoryTempVec[hour + 1];
+
+		tem = leftValue + (float)minute / 60.0*(rightValue - leftValue);
+	}
+
+	if (hour == 23)
+	{
+		float leftValue = HistoryTempVec[hour - 1];
+		float rightValue = HistoryTempVec[hour];
+
+		tem = rightValue + (float)minute / 60.0*(rightValue - leftValue);
+	}
+
+
+
+	return true;
 }
 
 

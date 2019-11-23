@@ -14,11 +14,11 @@
 #define HK_WULUMUQI  10
 
 
-#ifdef IRGIS_TEMPHIST
-#define IRGIS_TEMPHIST_API  _declspec(dllexport)
-#else
-#define IRGIS_TEMPHIST_API  _declspec(dllimport)
-#endif  
+//#ifdef IRGIS_TEMPHIST
+//#define IRGIS_TEMPHIST_API  _declspec(dllexport)
+//#else
+//#define IRGIS_TEMPHIST_API  _declspec(dllimport)
+//#endif  
 
 
 
@@ -27,11 +27,9 @@
 
 const double DEF_PI = 3.14159265359; // PI
 
-
 const double DEF_2PI = 6.28318530712; // 2*PI
 
 const double DEF_PI180 = 0.01745329252; // PI/180.0
-
 
 const double DEF_R = 6370693.5; // radius of earth
 
@@ -68,12 +66,12 @@ public:
 	// month day hour minute ： 月 日 时 分
 	// Lon ：经度
 	// Lat : 纬度
-	//bool getHistoryTemp(float &tem, int month, int day, int hour, int minute, float Lon, float Lat);
+	bool getHistoryTemp(float &tem, int month, int day, int hour, int minute, float Lon, float Lat);
 
 
 
-
-public:
+///////////////////////////////////////////////////////////////////
+private:
 
 	std::string m_libPath;  // 存储温度记录的文件夹路径
 
