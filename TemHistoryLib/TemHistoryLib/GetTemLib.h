@@ -38,7 +38,7 @@ const double DEF_R = 6370693.5; // radius of earth
 class GetTemLib
 {
 
-
+// 可继续添加其他数据接口
 
 public:
 
